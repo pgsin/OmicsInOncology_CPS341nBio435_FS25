@@ -1,0 +1,53 @@
+---
+title: "Week 2: Starting with R"
+author: "UZH n UU: tested by Jonas"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  bookdown::html_document2: default
+  bookdown::pdf_document2: default
+bibliography: bibliography.bib
+---
+
+```{r}
+#Use ggplot to compare the shrimp growth rates with their diet type using boxplot with modified aesthetics
+library(tidyverse)
+prawn_df <- data.frame(prawnGR)
+prawn_df %>% print()
+library(ggplot2)
+ggplot(data = prawn_df, aes(x = diet, y = GRate)) +
+  geom_boxplot(fill = "white", color = "black") +
+  labs(title = "Growth Rate Distribution", x = "Diet type", y = "Growth Rate") +
+  theme_minimal()
+
+#Shapiro-Wilk normality test
+natural_GRate <- prawn_df$GRate[prawn_df$diet == "Natural"]
+artificial_GRate <- prawn_df$GRate[prawn_df$diet == "Artificial"]
+shapiro_test_natural <- shapiro.test(natural_GRate)
+shapiro_test_artificial <- shapiro.test(artificial_GRate)
+print(shapiro_test_natural)
+print(shapiro_test_artificial)
+
+#Test the variance of the data
+var_test_result <- var.test(natural_GRate, artificial_GRate)
+print(var_test_result)
+
+
+```
+
+```{r}
+#testing how to use pipe operators
+prawn_df %>% print()
+```
+
+```{r}
+#testing how to use filter function -> extract only prawns that have natural diet
+natural_prawns <- prawn_df %>% filter(diet == "Natural")
+print(natural_prawns)
+```
+
+```{r}
+#testing how to use filter function -> extract only prawns that have artificial diet
+artificial_prawns <- prawn_df %>% filter(diet == "Artificial")
+print(artificial_prawns)
+```
+

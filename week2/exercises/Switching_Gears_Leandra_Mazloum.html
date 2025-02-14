@@ -1,0 +1,88 @@
+---
+title: "Week 2: Starting with R"
+author: "UZH n UU: tested by Jonas"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  bookdown::html_document2: default
+  bookdown::pdf_document2: default
+bibliography: bibliography.bib
+---
+
+```{r load libraries, include=FALSE}
+# install readr from CRAN
+# install.packages("readr")
+library(readr) # make sure your R has this library loaded, if not install it (see line above)
+install.packages("tidyverse")
+Library('tidyverse')
+```
+
+# Exercises for the R-Beginner - The fancy calculator
+
+## Switching Gears
+```{r SwitchGears, echo=TRUE, include=TRUE}
+library(tidyverse)
+```
+
+## Switching Gears
+###1.13 The Pipe
+```{r SwitchGears, echo=TRUE, include=TRUE}
+mpg_df <- mpg
+mpg_df %>% head()
+```
+
+### 5.2
+```{r SwitchGears, echo=TRUE, include=TRUE}
+library(readxl)
+flower <- read_excel("~/Github/OmicsInOncology_Group_6/week2/data4exercises/flower.xls")
+View(flower)
+```
+
+## Switching Gears
+```{r SwitchGears, echo=TRUE, include=TRUE}
+library(dplyr)
+avg_leafarea <- mean(flower$leafarea, na.rm = TRUE)
+filtered_flowers <- flower %>%
+    filter(nitrogen == "medium",
+           height < 10.0,
+           leafarea > avg_leafarea)
+print(filtered_flowers)
+```
+
+
+### 5.2 Example data boxplot
+```{r SwitchGears, echo=TRUE, include=TRUE}
+library(ggplot2)
+ggplot(flower, aes(x = nitrogen, y = height, fill = nitrogen)) + geom_boxplot() +
+    labs(title = "Plant Height Distribution by Nitrogen Level",
+         x = "Nitrogen Level",
+         y = "Height") +
+    theme_minimal()
+
+```
+
+## Scatter plot
+```{r SwitchGears, echo=TRUE, include=TRUE}
+ggplot(df,aes(x = weight, y = leafarea, color = nitrogen)) +
+    geom_point(alpha = 0.7, size = 3) +
+    geom_smooth(method = "lm", se = FALSE) +
+    labs(title = "Weight vs Leafarea",
+         x = "Weight",
+         y = "Leaf Areae")
+    theme_minimal()
+```
+
+### Bar Plot
+```{r SwitchGears, echo=TRUE, include=TRUE}
+ggplot(summary_flower, aes(x = treat, y= avg_flowers, fill = nitrogen)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    labs(title = "Average Flowers per Treatment",
+         x = "Treatment",
+         y = "Average Number of Flowers") +
+    theme_minimal()
+```
+
+## Switching Gears
+```{r SwitchGears, echo=TRUE, include=TRUE}
+
+```
+

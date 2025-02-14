@@ -1,0 +1,141 @@
+---
+title: "Week 2: Starting with R"
+author: "UZH n UU: tested by Jonas"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  bookdown::html_document2: default
+  bookdown::pdf_document2: default
+bibliography: bibliography.bib
+---
+
+```{r load libraries, include=FALSE}
+# install readr from CRAN
+# install.packages("readr")
+library(readr) # make sure your R has this library loaded, if not install it (see line above)
+```
+
+# Exercises for the R-Beginner - The fancy calculator
+
+## Exercise 2
+### 2.2
+* from https://alexd106.github.io/intro2R/exercise_2.html
+```{r myN, echo=TRUE, include=TRUE}
+myNumber <- 12.43
+
+# do some calculations
+# natural log
+log(myNumber)
+
+```
+
+```{r lg10, echo=TRUE, include=TRUE}
+# log10
+log10(myNumber)
+
+# log2
+log2(myNumber)
+# square
+sqrt(myNumber)
+# to the power of
+10 ^ (myNumber)
+
+```
+
+
+```{r}
+### 2.3
+my_obj <- 20
+area_circle <- ((10^2)*pi)
+print(area_circle)
+
+```
+``` 
+{r}
+
+### 2.4
+ (14*0.51) ^3 
+
+```
+
+``` {r}
+### 2.5 2.6
+weight <- c(69, 62, 57, 59, 59, 64, 56, 66, 67, 66)
+
+#mean 
+mean (weight)
+
+
+# variance
+
+var(weight)
+
+#standard deviation
+
+sd(weight)
+
+# range of weights
+range (weight)
+
+# number of children
+length(weight)
+
+
+ first_five <- weight [1:5] 
+ first_five
+
+ weight
+ 
+
+```
+``` {r}
+# 2.7
+height <- c(112, 102, 83, 84, 99, 90, 77, 112, 133, 112)
+
+summary(height)
+
+
+some_child <- height[c(2, 3, 9, 10)]
+some_child
+
+shorter_child <- height [height <= 99]
+
+shorter_child
+
+
+
+```
+
+``` {r}
+# 2.8
+
+height2 <- (height * 0.01) 
+
+BMI <- weight / (height2^2)
+BMI
+
+
+```
+``` {r}
+#2.9
+
+seq1 <- seq(from = 0, to = 1, by = 0.1)
+seq1
+```
+``` {r}
+seq2 <- rev(seq(from = 1, to= 10, by=0.5))
+seq(from = 10, to= 1, by=-0.5)
+
+```
+```
+{r}
+name = h.j.m.haverkort@students.uu.nl
+
+```
+
+
+
+# Session Information
+
+```{r sessionInfo, echo=FALSE, include=TRUE}
+pander::pander(sessionInfo())
+```
